@@ -4,7 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { filterOptions } from '../constants';
 
-const apiUrl = 'http://localhost:3000/api/file';
+const apiUrl = '/api/file';
 export default function Home() {
   const [filterSelected, setFilterSelected] = useState(null);
   const [fileData, setFileData] = useState([]);
