@@ -1,7 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { promises as fs } from 'fs';
+import fs from 'fs';
+import path from 'path';
 
 export default async function handler(req, res) {
-  const file = await fs.readFile(process.cwd() + '/src/data.csv', 'utf8');
-  res.status(200).json({ data: file.split('\n') });
+  const filePath = path.join(process.cwd(), 'public', 'data', 'data.csv');
+  try {
+    const data = fs.readFileSync(filePath, 'utf-8');
+    res.status(200).json({ data: data.split('\n') });
+  } catch (error) {
+    res.status(500).json({ error: 'File not found or unable to read file.' });
+  }
 }
